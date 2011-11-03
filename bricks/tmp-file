@@ -1,0 +1,4 @@
+# does this file need a trap?
+# TMPFILE=$(mktemp -t /tmp/fancydir)
+TMPFILE=$(mktemp)
+

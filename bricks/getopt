@@ -1,0 +1,15 @@
+function usage () {
+cat << _EOF
+$(basename $(readlink -f $0)) [-h ]
+        -h help
+_EOF
+}
+
+while getopts h c
+do
+ case $c in
+  h) usage; exit 0 ;;
+  *) usage; exit 0 ;;
+ esac
+done
+shift $(($OPTIND - 1))

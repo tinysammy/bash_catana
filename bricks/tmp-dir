@@ -1,0 +1,2 @@
+# needs this var to be trapped?
+TMPDIR=$(mkdir -d)

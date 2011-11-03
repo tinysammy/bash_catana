@@ -1,0 +1,23 @@
+ARG=$@
+for ARG do
+	ARG_VALUE=$(echo $ARG | sed 's/--[^= ]*=//')
+	if echo $ARG | grep -- '--[^= ]*=' >& /dev/null && [ -z "$ARG_VALUE" ]; then
+		echo "${ARG}: Missing value!" && exit
+	fi
+	case $ARG in
+		--verbose)
+		        VERBOSE="yes"
+		;;
+		--argument=*)
+		        FOOARGUMENT=$ARG_VALUE
+		;;
+		--help)
+		        echo "You really ned help or put usage function here!"
+		        exit 0
+		;;
+		*)
+		        usage
+		;;
+	esac
+	shift
+done 
