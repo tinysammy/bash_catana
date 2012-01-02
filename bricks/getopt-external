@@ -1,0 +1,18 @@
+#!/bin/sh
+### From: http://www.linuxquestions.org/questions/programming-9/getting-command-line-arguments-in-bash-723848/
+
+set -e
+
+OPTS=`getopt -n $0 -o d: --long dir: -- $@`
+
+eval set -- "$OPTS"
+
+while true
+do
+        case "$1" in
+                -d|--dir)  dir=$2; shift 2 ;;
+                --)        shift ; break ;;
+        esac
+done
+
+echo $dir    # for debug

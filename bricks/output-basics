@@ -1,0 +1,18 @@
+function msg()
+{
+	if [ _${LOGFILE} != _"" ] ; then
+        	echo -e "$@" | tee -a $LOGFILE
+	else
+        	echo -e "$@" 
+	fi
+}
+
+function error()
+{
+	code=$1
+	shift
+	msg "ERROR: $@" >&2
+	if [ code != 0 ]; then
+		exit ${code}
+	fi
+}

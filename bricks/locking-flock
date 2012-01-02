@@ -1,0 +1,19 @@
+#!/bin/bash
+## http://tldp.org/LDP/abs/html/io-redirection.html
+LOCKFILE="/tmp/flocktest"
+if ! [ -w ${LOCKFILE} ]; then echo cant write lockfile; exit 0; fi
+SCRIPTNAME=$(basename $(readlink -f $0))
+
+(
+flock -n 200
+
+if [ _$? != _0 ] ; then
+	echo "${SCRIPTNAME} already running! If not, delete ${LOCKFILE}"
+        exit 0
+fi
+
+echo sleeping
+sleep 300
+echo "sleeped enough now unlocking"
+
+) 200>${LOCKFILE}

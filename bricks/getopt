@@ -5,9 +5,13 @@ $(basename $(readlink -f $0)) [-h ]
 _EOF
 }
 
-while getopts h c
+### Enforce hat you handover a parameter
+if [ _$# == _0 ] ; then usage; exit 0 ; fi
+
+while getopts t:h c
 do
  case $c in
+  t) TESTVAR=${OPTARG} ;;
   h) usage; exit 0 ;;
   *) usage; exit 0 ;;
  esac
