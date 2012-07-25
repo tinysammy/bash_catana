@@ -1,2 +1,2 @@
-# needs this var to be trapped?
+# needs this directory to be trapped?
 TMPDIR=$(mkdir -d)
